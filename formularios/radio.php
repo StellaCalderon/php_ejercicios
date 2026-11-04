@@ -42,6 +42,8 @@ else {
 
         echo "<input type='submit' name='enviar' value='Enviar' />";
 
+        echo "<textarea name='comentarios' rows='5' cols='40'></textarea>";
+
     echo '</form></body></html>';
 }
 ?>
