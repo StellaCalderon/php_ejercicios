@@ -34,4 +34,6 @@ var_dump($cursos_agrupados);
 echo "</pre>";
 
 $fichero = fopen("alumnos.txt", "a");
+fputs($fichero,`Hola, nueva línea`);
+fclose($fichero);
 ?>
