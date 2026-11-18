@@ -6,7 +6,7 @@ $datos = array();
 $correcto = false;
 
 $arraySexo = array('Mujer' => 'F', 'Hombre' => 'M');
-$arrayPaises = array('España' => 'ES', 'Francia' => 'FR', 'Portugal' => 'PT', 'Italia' => 'IT');
+$arrayPaises = array('españa', 'francia', 'portugal', 'italia');
 $arrayAcepto = array('acepto' => array('etiqueta' => 'Acepto:', 'valor' => 'OK'));
 
 if (isset($_POST['enviar'])) {
@@ -70,10 +70,12 @@ if (isset($_POST['enviar'])) {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Recibe y Repinta</title>
 </head>
+
 <body>
     <input type="text" name="nombre" value="
     <?php 
@@ -116,7 +118,12 @@ if (isset($_POST['enviar'])) {
     ?>
     <br>
 
-    <input type="text" name="fechaNacimiento" value="<?php if (isset($datos['fechaNacimiento'])) { echo $datos['fechaNacimiento']; } ?>" />
+
+    <?php 
+        if (isset($datos['fechaNacimiento'])) {
+            echo $datos['fechaNacimiento']; 
+        } 
+    ?>" />
     <?php
     if (isset($errores['fechaNacimiento'])) {
         echo "<span style='color:red;'> " . $errores['fechaNacimiento'] . "</span>";
@@ -147,14 +154,12 @@ if (isset($_POST['enviar'])) {
     ?>
     <br>
 
-    
-    <textarea name="comentarios" rows="4" cols="40">
-        <?php 
-            if (isset($datos['comentarios'])) {
-                echo $datos['comentarios']; 
-            }
-        ?>
-    </textarea>
+    <?php 
+        if (isset($datos['comentarios'])) {
+            echo $datos['comentarios']; 
+        }
+    ?>
+
     <br>
 
     <input type="file" name="foto" />
@@ -166,7 +171,7 @@ if (isset($_POST['enviar'])) {
     <br>
 
     <input type="submit" name="enviar" value="Enviar" />
-</form>
+    </form>
 
     <?php
     $comentarios= $_POST['comentarios'];
@@ -191,4 +196,5 @@ if (isset($_POST['enviar'])) {
     }
     ?>
 </body>
+
 </html>

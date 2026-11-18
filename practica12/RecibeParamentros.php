@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Recibe Parámetros</title>
 </head>
+
 <body>
-<?php
+    <?php
 
     $errores = array();
 
@@ -24,18 +26,18 @@
     if (empty($_POST['fechaNacimiento'])) {
         $errores[] = "La fecha de nacimiento es obligatoria";
     } else {
-        $fecha = DateTime::createFromFormat('d/m/y', $_POST['fechaNacimiento']);
-        if ($fecha == false) {
-            $errores[] = "La fecha tiene que tener formato dd/mm/aa";
+        $fecha = $_POST['fechaNacimiento'];
+        $anio = substr($fecha, -2); 
+        
+        if ($anio <= date('y')) {
+            $anio = "20" . $anio;
         } else {
-            $hoy = new DateTime();
-            if ($fecha > $hoy) {
-                $fecha->modify('-100 years');
-            }
-            $intervalo = $hoy->diff($fecha);
-            if ($intervalo->y < 18) {
-                $errores[] = "Tienes que ser mayor de 18 años";
-            }
+            $anio = "19" . $anio;
+        }
+
+        $hoy = date('Y');
+        if (($hoy - $anio) < 18) {
+            $errores[] = "Debe ser mayor de 18 años";
         }
     }
     $comentarios= $_POST['comentarios'];
@@ -87,4 +89,5 @@
 
 ?>
 </body>
+
 </html>
