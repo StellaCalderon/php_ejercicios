@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Practica 12</title>
+</head>
+<body>
+    <form action="RecibeParamentros.php" method="post" enctype="multipart/form-data">
+        <p>Nombre: <input type="text" name="nombre" /></p>
+        <p>Clave: <input type="password" name="clave" /></p>
+        <p>Genero:
+            <label>Mujer</label><input type="radio" name="genero" value="F" />
+            <label>Hombre</label><input type="radio" name="genero" value="M" />
+        </p>
+        <p>Fecha de nacimiento (dd/mm/aa): <input type="text" name="fechaNacimiento"/></p>
+        <p>Pais:
+            <select name="pais[]" multiple="multiple">
+                <option value="ES">España</option>
+                <option value="FR">Francia</option>
+                <option value="PT">Portugal</option>
+                <option value="IT">Italia</option>
+            </select>
+        </p>
+        <p>Acepto:<input type="checkbox" name="acepto" value="OK"/></p>
+        <p>Foto: <input type="file" name="foto"/></p>
+        <p><input type="submit" name="enviar" value="Enviar" /></p>
+    </form>
+</body>
+</html>
