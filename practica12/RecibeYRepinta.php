@@ -27,18 +27,14 @@ if (isset($_POST['enviar'])) {
     if (empty($_POST['fechaNacimiento'])) {
         $errores['fechaNacimiento'] = "La fecha es obligatoria";
     } else {
-        $fecha = DateTime::createFromFormat('d/m/y', $_POST['fechaNacimiento']);
+        $fecha = $_POST['fechaNacimiento'];
         if ($fecha == false) {
             $errores['fechaNacimiento'] = "Formato incorrecto (dd/mm/aa)";
         } else {
             $hoy = new DateTime();
-            if ($fecha > $hoy) {
-                $fecha->modify('-100 years');
-            }
-            $intervalo = $hoy->diff($fecha);
-            if ($intervalo->y < 18) {
+            if(($hoy- $fecha)<18)
                 $errores['fechaNacimiento'] = "Debe ser mayor de 18 años";
-            }
+            
         }
     }
 
@@ -55,7 +51,7 @@ if (isset($_POST['enviar'])) {
     }
 
     if ($_FILES['foto']['name'] != "") {
-        $extension = strtolower(substr(strrchr($_FILES['foto']['name'], '.'), 1));
+        $extension = explode('.', $_FILES['foto']['name']);
         if ($extension != 'jpg' && $extension != 'png' && $extension != 'gif') {
             $errores['foto'] = "Solo jpg, png o gif";
         }
@@ -79,98 +75,98 @@ if (isset($_POST['enviar'])) {
     <title>Recibe y Repinta</title>
 </head>
 <body>
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
-        <input type="text" name="nombre" value="
-        <?php 
-            if (isset($datos['nombre'])) {
-                echo $datos['nombre']; 
+    <input type="text" name="nombre" value="
+    <?php 
+        if (isset($datos['nombre'])) {
+            echo $datos['nombre']; 
+        } 
+    ?>" />
+
+    <?php
+    if (isset($errores['nombre'])) {
+        echo "<span style='color:red;'> " . $errores['nombre'] . "</span>";
+    }
+    ?>
+    <br>
+
+    <input type="password" name="clave" value="
+    <?php 
+        if (isset($datos['clave'])) {
+                echo $datos['clave']; 
             } 
-        ?>" />
-        <?php
-        if (isset($errores['nombre'])) {
-            echo "<span style='color:red;'> " . $errores['nombre'] . "</span>";
-        }
-        ?>
-        <br>
+    ?>" />
+    <?php
+    if (isset($errores['clave'])) {
+        echo "<span style='color:red;'> " . $errores['clave'] . "</span>";
+    }
+    ?>
+    <br>
 
-        <input type="password" name="clave" value="
+    <?php
+    if (isset($datos['sexo'])) {
+        $sexo = $datos['sexo'];
+    } else {
+        $sexo = '';
+    }
+    echo generaBotonesRadio('Sexo', $arraySexo, $sexo);
+
+    if (isset($errores['sexo'])) {
+        echo "<span style='color:red;'> " . $errores['sexo'] . "</span>";
+    }
+    ?>
+    <br>
+
+    <input type="text" name="fechaNacimiento" value="<?php if (isset($datos['fechaNacimiento'])) { echo $datos['fechaNacimiento']; } ?>" />
+    <?php
+    if (isset($errores['fechaNacimiento'])) {
+        echo "<span style='color:red;'> " . $errores['fechaNacimiento'] . "</span>";
+    }
+    ?>
+    <br>
+
+    <?php
+    if (isset($datos['pais'])) {
+        $paises = $datos['pais'];
+    } else {
+        $paises = array();
+    }
+    echo generaSelectMultiple('pais', $arrayPaises, $paises);
+
+    if (isset($errores['pais'])) {
+        echo "<span style='color:red;'> " . $errores['pais'] . "</span>";
+    }
+    ?>
+    <br>
+
+    <?php
+    echo generaCajasVerificacion($arrayAcepto, $datos);
+
+    if (isset($errores['acepto'])) {
+        echo "<span style='color:red;'> " . $errores['acepto'] . "</span>";
+    }
+    ?>
+    <br>
+
+    
+    <textarea name="comentarios" rows="4" cols="40">
         <?php 
-            if (isset($datos['clave'])) {
-                 echo $datos['clave']; 
-                } 
-        ?>" />
-        <?php
-        if (isset($errores['clave'])) {
-            echo "<span style='color:red;'> " . $errores['clave'] . "</span>";
-        }
+            if (isset($datos['comentarios'])) {
+                echo $datos['comentarios']; 
+            }
         ?>
-        <br>
+    </textarea>
+    <br>
 
-        <?php
-        if (isset($datos['sexo'])) {
-            $gen = $datos['sexo'];
-        } else {
-            $gen = '';
-        }
-        echo generaBotonesRadio('Sexo', $arraySexo, $gen);
+    <input type="file" name="foto" />
+    <?php
+    if (isset($errores['foto'])) {
+        echo "<span style='color:red;'> " . $errores['foto'] . "</span>";
+    }
+    ?>
+    <br>
 
-        if (isset($errores['sexo'])) {
-            echo "<span style='color:red;'> " . $errores['sexo'] . "</span>";
-        }
-        ?>
-        <br>
-
-        <input type="text" name="fechaNacimiento" value="<?php if (isset($datos['fechaNacimiento'])) { echo $datos['fechaNacimiento']; } ?>" />
-        <?php
-        if (isset($errores['fechaNacimiento'])) {
-            echo "<span style='color:red;'> " . $errores['fechaNacimiento'] . "</span>";
-        }
-        ?>
-        <br>
-
-        <?php
-        if (isset($datos['pais'])) {
-            $paises = $datos['pais'];
-        } else {
-            $paises = array();
-        }
-        echo generaSelectMultiple('pais', $arrayPaises, $paises);
-
-        if (isset($errores['pais'])) {
-            echo "<span style='color:red;'> " . $errores['pais'] . "</span>";
-        }
-        ?>
-        <br>
-
-        <?php
-        echo generaCajasVerificacion($arrayAcepto, $datos);
-
-        if (isset($errores['acepto'])) {
-            echo "<span style='color:red;'> " . $errores['acepto'] . "</span>";
-        }
-        ?>
-        <br>
-
-       
-        <textarea name="comentarios" rows="4" cols="40">
-            <?php 
-                if (isset($datos['comentarios'])) {
-                    echo $datos['comentarios']; 
-                }
-            ?>
-        </textarea>
-        <br>
-
-        <input type="file" name="foto" />
-        <?php
-        if (isset($errores['foto'])) {
-            echo "<span style='color:red;'> " . $errores['foto'] . "</span>";
-        }
-        ?>
-        <br>
-
-        <input type="submit" name="enviar" value="Enviar" />
-    </form>
+    <input type="submit" name="enviar" value="Enviar" />
+</form>
 
     <?php
     $comentarios= $_POST['comentarios'];
