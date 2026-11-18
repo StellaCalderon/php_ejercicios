@@ -1,12 +1,11 @@
 <?php
 require_once 'Funciones.php';
-date_default_timezone_set('Europe/Madrid');
 
 $errores = array();
 $datos = array();
 $correcto = false;
 
-$arrayGenero = array('Mujer' => 'F', 'Hombre' => 'M');
+$arraySexo = array('Mujer' => 'F', 'Hombre' => 'M');
 $arrayPaises = array('España' => 'ES', 'Francia' => 'FR', 'Portugal' => 'PT', 'Italia' => 'IT');
 $arrayAcepto = array('acepto' => array('etiqueta' => 'Acepto:', 'valor' => 'OK'));
 
@@ -21,8 +20,8 @@ if (isset($_POST['enviar'])) {
         $errores['clave'] = "La clave debe tener entre 6 y 12 carácteres";
     }
 
-    if (!isset($_POST['genero'])) {
-        $errores['genero'] = "Debe seleccionar un género";
+    if (!isset($_POST['sexo'])) {
+        $errores['sexo'] = "Debe seleccionar un sexo";
     }
 
     if (empty($_POST['fechaNacimiento'])) {
@@ -81,7 +80,12 @@ if (isset($_POST['enviar'])) {
 </head>
 <body>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
-        <input type="text" name="nombre" value="<?php if (isset($datos['nombre'])) { echo $datos['nombre']; } ?>" />
+        <input type="text" name="nombre" value="
+        <?php 
+            if (isset($datos['nombre'])) {
+                echo $datos['nombre']; 
+            } 
+        ?>" />
         <?php
         if (isset($errores['nombre'])) {
             echo "<span style='color:red;'> " . $errores['nombre'] . "</span>";
@@ -89,7 +93,12 @@ if (isset($_POST['enviar'])) {
         ?>
         <br>
 
-        <input type="password" name="clave" value="<?php if (isset($datos['clave'])) { echo $datos['clave']; } ?>" />
+        <input type="password" name="clave" value="
+        <?php 
+            if (isset($datos['clave'])) {
+                 echo $datos['clave']; 
+                } 
+        ?>" />
         <?php
         if (isset($errores['clave'])) {
             echo "<span style='color:red;'> " . $errores['clave'] . "</span>";
@@ -98,15 +107,15 @@ if (isset($_POST['enviar'])) {
         <br>
 
         <?php
-        if (isset($datos['genero'])) {
-            $gen = $datos['genero'];
+        if (isset($datos['sexo'])) {
+            $gen = $datos['sexo'];
         } else {
             $gen = '';
         }
-        echo generaBotonesRadio('genero', $arrayGenero, $gen);
+        echo generaBotonesRadio('Sexo', $arraySexo, $gen);
 
-        if (isset($errores['genero'])) {
-            echo "<span style='color:red;'> " . $errores['genero'] . "</span>";
+        if (isset($errores['sexo'])) {
+            echo "<span style='color:red;'> " . $errores['sexo'] . "</span>";
         }
         ?>
         <br>
@@ -145,7 +154,9 @@ if (isset($_POST['enviar'])) {
        
         <textarea name="comentarios" rows="4" cols="40">
             <?php 
-                if (isset($datos['comentarios'])) { echo $datos['comentarios']; }
+                if (isset($datos['comentarios'])) {
+                    echo $datos['comentarios']; 
+                }
             ?>
         </textarea>
         <br>
@@ -162,10 +173,12 @@ if (isset($_POST['enviar'])) {
     </form>
 
     <?php
+    $comentarios= $_POST['comentarios'];
+
     if ($correcto == true) {
         echo "Nombre: " . $_POST['nombre'] . "<br>";
         echo "Clave: " . $_POST['clave'] . "<br>";
-        echo "Genero: " . $_POST['genero'] . "<br>";
+        echo "Sexo: " . $_POST['sexo'] . "<br>";
         echo "Fecha de nacimiento: " . $_POST['fechaNacimiento'] . "<br>";
         echo "Pais: ";
 

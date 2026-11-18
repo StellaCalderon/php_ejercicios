@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Practica 12</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <form action="RecibeParamentros.php" method="post" enctype="multipart/form-data">
         <p>Nombre: <input type="text" name="nombre" /></p>
         <p>Clave: <input type="password" name="clave" /></p>
-        <p>Genero:
-            <label>Mujer</label><input type="radio" name="genero" value="F" />
-            <label>Hombre</label><input type="radio" name="genero" value="M" />
+        <p>Sexo:
+            <label>Mujer</label><input type="radio" name="sexo" value="F" />
+            <label>Hombre</label><input type="radio" name="sexo" value="M" />
         </p>
         <p>Fecha de nacimiento (dd/mm/aa): <input type="text" name="fechaNacimiento"/></p>
         <p>Pais:
@@ -22,6 +23,8 @@
             </select>
         </p>
         <p>Acepto:<input type="checkbox" name="acepto" value="OK"/></p>
+        <p>Comentarios:</p>
+        <textarea name ="comentarios" rows="4" cols="40"></textarea><br>
         <p>Foto: <input type="file" name="foto"/></p>
         <p><input type="submit" name="enviar" value="Enviar" /></p>
     </form>

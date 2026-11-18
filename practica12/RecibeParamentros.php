@@ -18,8 +18,8 @@ if (strlen($_POST['clave']) < 6 || strlen($_POST['clave']) > 12) {
     $errores[] = "La clave tiene que tener entre 6 y 12 carácteres";
 }
 
-if (!isset($_POST['genero'])) {
-    $errores[] = "Hay que seleccionar un género";
+if (!isset($_POST['sexo'])) {
+    $errores[] = "Hay que seleccionar un sexo";
 }
 
 if (empty($_POST['fechaNacimiento'])) {
@@ -39,7 +39,7 @@ if (empty($_POST['fechaNacimiento'])) {
         }
     }
 }
-
+$comentarios= $_POST['comentarios'];
 if (!isset($_POST['pais'])) {
     $errores[] = "Tienes que seleccionar al menos un país";
 }
@@ -72,7 +72,7 @@ if (count($errores) > 0) {
 } else {
     echo "Nombre: " . $_POST['nombre'] . "<br>";
     echo "Clave: " . $_POST['clave'] . "<br>";
-    echo "Genero: " . $_POST['genero'] . "<br>";
+    echo "Sexo: " . $_POST['sexo'] . "<br>";
     echo "Fecha de nacimiento: " . $_POST['fechaNacimiento'] . "<br>";
     echo "Pais: ";
     foreach ($_POST['pais'] as $pais) {
@@ -80,10 +80,12 @@ if (count($errores) > 0) {
     }
     echo "<br>";
     echo "Acepto: " . $_POST['acepto'] . "<br>";
+    echo "Comentarios: ".$_POST['comentarios']. "<br>";
     if ($_FILES['foto']['name'] != "") {
         echo "Foto: " . $_FILES['foto']['name'] . "<br>";
     }
 }
+
 ?>
 </body>
 </html>
