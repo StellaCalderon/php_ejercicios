@@ -32,7 +32,7 @@ function generaCajasVerificacion($checkboxes, $enviados = array()) {
 }
 
 function generaSelectSimple($nombre, $opciones, $seleccionado = '') {
-    $cadena = "<select name=\"" . $nombre . "\">\n";
+    $cadena = "<select name='$nombre'>\n";
     foreach ($opciones as $etiqueta => $valor) {
         if ($valor == $seleccionado) {
             $cadena = $cadena . "<option value=\"" . $valor . "\" selected=\"selected\">" . $etiqueta . "</option>\n";

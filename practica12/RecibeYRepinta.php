@@ -18,11 +18,11 @@ if (isset($_POST['enviar'])) {
 
 
     if (strlen($_POST['clave']) < 6 || strlen($_POST['clave']) > 12) {
-        $errores['clave'] = "La clave debe tener entre 6 y 12 caracteres";
+        $errores['clave'] = "La clave debe tener entre 6 y 12 carácteres";
     }
 
     if (!isset($_POST['genero'])) {
-        $errores['genero'] = "Debe seleccionar un genero";
+        $errores['genero'] = "Debe seleccionar un género";
     }
 
     if (empty($_POST['fechaNacimiento'])) {
@@ -44,7 +44,7 @@ if (isset($_POST['enviar'])) {
     }
 
     if (!isset($_POST['pais'])) {
-        $errores['pais'] = "Debe seleccionar un pais";
+        $errores['pais'] = "Debe seleccionar un país";
     }
 
     if (!isset($_POST['acepto'])) {
@@ -81,23 +81,21 @@ if (isset($_POST['enviar'])) {
 </head>
 <body>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
-        Nombre: 
         <input type="text" name="nombre" value="<?php if (isset($datos['nombre'])) { echo $datos['nombre']; } ?>" />
         <?php
         if (isset($errores['nombre'])) {
             echo "<span style='color:red;'> " . $errores['nombre'] . "</span>";
         }
         ?>
-        <br /><br />
+        <br>
 
-        Clave: 
         <input type="password" name="clave" value="<?php if (isset($datos['clave'])) { echo $datos['clave']; } ?>" />
         <?php
         if (isset($errores['clave'])) {
             echo "<span style='color:red;'> " . $errores['clave'] . "</span>";
         }
         ?>
-        <br /><br />
+        <br>
 
         <?php
         if (isset($datos['genero'])) {
@@ -111,7 +109,7 @@ if (isset($_POST['enviar'])) {
             echo "<span style='color:red;'> " . $errores['genero'] . "</span>";
         }
         ?>
-        <br /><br />
+        <br>
 
         <input type="text" name="fechaNacimiento" value="<?php if (isset($datos['fechaNacimiento'])) { echo $datos['fechaNacimiento']; } ?>" />
         <?php
@@ -119,7 +117,7 @@ if (isset($_POST['enviar'])) {
             echo "<span style='color:red;'> " . $errores['fechaNacimiento'] . "</span>";
         }
         ?>
-        <br /><br />
+        <br>
 
         <?php
         if (isset($datos['pais'])) {
@@ -133,7 +131,7 @@ if (isset($_POST['enviar'])) {
             echo "<span style='color:red;'> " . $errores['pais'] . "</span>";
         }
         ?>
-        <br /><br />
+        <br>
 
         <?php
         echo generaCajasVerificacion($arrayAcepto, $datos);
@@ -142,11 +140,15 @@ if (isset($_POST['enviar'])) {
             echo "<span style='color:red;'> " . $errores['acepto'] . "</span>";
         }
         ?>
-        <br /><br />
+        <br>
 
-        <br />
-        <textarea name="comentarios" rows="4" cols="40"><?php if (isset($datos['comentarios'])) { echo $datos['comentarios']; } ?></textarea>
-        <br /><br />
+       
+        <textarea name="comentarios" rows="4" cols="40">
+            <?php 
+                if (isset($datos['comentarios'])) { echo $datos['comentarios']; }
+            ?>
+        </textarea>
+        <br>
 
         <input type="file" name="foto" />
         <?php
@@ -154,27 +156,28 @@ if (isset($_POST['enviar'])) {
             echo "<span style='color:red;'> " . $errores['foto'] . "</span>";
         }
         ?>
-        <br /><br />
+        <br>
 
         <input type="submit" name="enviar" value="Enviar" />
     </form>
 
     <?php
     if ($correcto == true) {
-        echo "<hr />";
-        echo "Nombre: " . $_POST['nombre'] . "<br />";
-        echo "Clave: " . $_POST['clave'] . "<br />";
-        echo "Genero: " . $_POST['genero'] . "<br />";
-        echo "Fecha de nacimiento: " . $_POST['fechaNacimiento'] . "<br />";
+        echo "Nombre: " . $_POST['nombre'] . "<br>";
+        echo "Clave: " . $_POST['clave'] . "<br>";
+        echo "Genero: " . $_POST['genero'] . "<br>";
+        echo "Fecha de nacimiento: " . $_POST['fechaNacimiento'] . "<br>";
         echo "Pais: ";
+
         foreach ($_POST['pais'] as $pais) {
             echo $pais . " ";
         }
-        echo "<br />";
-        echo "Acepto: " . $_POST['acepto'] . "<br />";
-        echo "Comentarios: " . $_POST['comentarios'] . "<br />";
+        echo "<br>";
+
+        echo "Acepto: " . $_POST['acepto'] . "<br>";
+        echo "Comentarios: " . $_POST['comentarios'] . "<br>";
         if ($_FILES['foto']['name'] != "") {
-            echo "Foto: " . $_FILES['foto']['name'] . "<br />";
+            echo "Foto: " . $_FILES['foto']['name'] . "<br>";
         }
     }
     ?>
