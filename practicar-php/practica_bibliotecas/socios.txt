@@ -1,0 +1,4 @@
+101;Laura;Méndez Ruiz;laura.mendez@mail.com;ACTIVO
+102;David;Gómez Soto;david.gomez@mail.com;ACTIVO
+103;Sara;Núñez Gil;sara.nunez@mail.com;SANCIONADO
+104;Pablo;Ortiz Lara;pablo.ortiz@mail.com;ACTIVO

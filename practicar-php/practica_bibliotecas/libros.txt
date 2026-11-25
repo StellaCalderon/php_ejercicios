@@ -1,0 +1,5 @@
+978-8401;El nombre del viento;Patrick Rothfuss;Fantasía;3
+978-8402;Cien años de soledad;Gabriel García Márquez;Novela;2
+978-8403;Fundamentos de Redes;Andrew Tanenbaum;Informática;4
+978-8404;1984;George Orwell;Ciencia Ficción;2
+978-8405;Clean Code;Robert C. Martin;Informática;1
