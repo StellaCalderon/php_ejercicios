@@ -1,0 +1,7 @@
+1;Laura;Gómez Ruiz;laura.gomez@academia.es;Matemáticas,Física;18.50
+2;Carlos;Martín Soto;carlos.martin@academia.es;Lengua,Inglés;16.00
+3;Elena;Navarro Gil;elena.navarro@academia.es;Química,Biología;17.50
+4;Javier;Ortega Pérez;javier.ortega@academia.es;Programación,Matemáticas;20.00
+5;Marta;Sánchez Lara;marta.sanchez@academia.es;Inglés,Francés;15.00
+6;Pablo;Ruiz Castro;pablo.ruiz@academia.es;Historia,Lengua;14.50
+7;Carmen;Durán;carmen@domenico.es;Programación,Matemáticas;20.00

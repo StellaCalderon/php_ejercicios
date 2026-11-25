@@ -1,0 +1,10 @@
+1;Lucía;Fernández Mora;600111222;lucia.fernandez@correo.es;ESO
+2;Daniel;Pérez Vidal;600222333;daniel.perez@correo.es;Bachillerato
+3;Sofía;López Ramos;611333444;sofia.lopez@correo.es;ESO
+4;Andrés;García Núñez;622444555;andres.garcia@correo.es;Bachillerato
+5;Irene;Molina Cano;633555666;irene.molina@correo.es;Universidad
+6;Hugo;Torres Prieto;644666777;hugo.torres@correo.es;ESO
+7;Carmen;Díaz Herrera;655777888;carmen.diaz@correo.es;ESO
+8;Alejandro;Romero Gil;666888999;alejandro.romero@correo.es;Bachillerato
+9;Paula;Jiménez Ortiz;677999000;paula.jimenez@correo.es;Primaria
+10;Sergio;Vega Campos;688000111;sergio.vega@correo.es;ESO
